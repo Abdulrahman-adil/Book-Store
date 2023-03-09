@@ -18,7 +18,8 @@ They should give the details of their username, contact number and shipping addr
 The books are divided into many categories based on subject like Software, Database, English, Architecture etc.
 
 The Administrator will have additional functionalities when compared to the
-common user. He can add, delete and update the book details, book categories,
+common user. 
+He can add, delete and update the book details, book categories,
 member information and also confirm a placed order.
 
 ### technologies
