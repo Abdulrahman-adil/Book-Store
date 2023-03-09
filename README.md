@@ -4,9 +4,7 @@
 
 ### Installation
 
-```EF Core Sql, Tools
-  
-```
+EF Core Sql, Tools
 
 ### Features
 
