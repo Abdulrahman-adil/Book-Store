@@ -4,13 +4,16 @@ namespace Book_Store.Models
 {
     public class OrderItem
     {
-        
         public int Quantity { get; set; }
         public decimal Price { get; set; }
+        
+        [ForeignKey("Orders")]
         public int OrederId { get; set; }
-        public int BookId { get; set; }
+        public Orders Orders { get; set; } = new Orders();
 
-        public Orders Order { get; set; } = new Orders();
-        public Books BookItem { get; set; } = new Books();
+
+        [ForeignKey("Books")]
+        public int BookId { get; set; }
+        public Books Books { get; set; } = new Books();
     }
 }

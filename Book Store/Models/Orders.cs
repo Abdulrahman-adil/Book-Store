@@ -12,6 +12,6 @@ namespace Book_Store.Models
         public int CustomerId { get; set; }
         public Customers Customer { get; set; } = new Customers();
 
-        public List<OrderItem> BookOrders { get; set; } = new List<OrderItem>();
+        public List<OrderItem> Books { get; set; } = new List<OrderItem>();
     }
 }

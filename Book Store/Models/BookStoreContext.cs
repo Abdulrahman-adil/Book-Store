@@ -20,7 +20,7 @@ namespace Book_Store.Models
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<OrderItem>()
-                .HasKey(k => new { k.OrederId, k.BookId });
+                .HasKey(k => new { k.OrederId, k.BookId});
 
         }
     }

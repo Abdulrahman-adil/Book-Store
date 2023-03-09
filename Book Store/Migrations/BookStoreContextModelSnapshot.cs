@@ -64,7 +64,7 @@ namespace Book_Store.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("PublicationDate")
+                    b.Property<DateTime?>("PublicationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("PublisherId")
@@ -129,12 +129,6 @@ namespace Book_Store.Migrations
                     b.Property<int>("BookId")
                         .HasColumnType("int");
 
-                    b.Property<int>("BookItemId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -143,9 +137,7 @@ namespace Book_Store.Migrations
 
                     b.HasKey("OrederId", "BookId");
 
-                    b.HasIndex("BookItemId");
-
-                    b.HasIndex("OrderId");
+                    b.HasIndex("BookId");
 
                     b.ToTable("OrderItems");
                 });
@@ -237,21 +229,21 @@ namespace Book_Store.Migrations
 
             modelBuilder.Entity("Book_Store.Models.OrderItem", b =>
                 {
-                    b.HasOne("Book_Store.Models.Books", "BookItem")
-                        .WithMany("BookItems")
-                        .HasForeignKey("BookItemId")
+                    b.HasOne("Book_Store.Models.Books", "Books")
+                        .WithMany("Items")
+                        .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Book_Store.Models.Orders", "Order")
-                        .WithMany("BookOrders")
-                        .HasForeignKey("OrderId")
+                    b.HasOne("Book_Store.Models.Orders", "Orders")
+                        .WithMany("Books")
+                        .HasForeignKey("OrederId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("BookItem");
+                    b.Navigation("Books");
 
-                    b.Navigation("Order");
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("Book_Store.Models.Orders", b =>
@@ -272,7 +264,7 @@ namespace Book_Store.Migrations
 
             modelBuilder.Entity("Book_Store.Models.Books", b =>
                 {
-                    b.Navigation("BookItems");
+                    b.Navigation("Items");
                 });
 
             modelBuilder.Entity("Book_Store.Models.Customers", b =>
@@ -282,7 +274,7 @@ namespace Book_Store.Migrations
 
             modelBuilder.Entity("Book_Store.Models.Orders", b =>
                 {
-                    b.Navigation("BookOrders");
+                    b.Navigation("Books");
                 });
 
             modelBuilder.Entity("Book_Store.Models.Publisher", b =>

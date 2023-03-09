@@ -8,12 +8,9 @@ namespace Book_Store.Models
         public string Title { get; set; } = ""; // string.Empty;
         public string Isbn { get; set; } = "";
         public decimal Price { get; set; }
-        public DateTime PublicationDate { get; set; }
+        public DateTime? PublicationDate { get; set; }
         public string? Image { get; set; }
         
-        [InverseProperty("BookItem")]
-        public List<OrderItem> BookItems { get; set; } = new List<OrderItem>();
-
         // Publisher
         [ForeignKey("Publisher")]
         public int PublisherId { get; set; }
@@ -28,6 +25,8 @@ namespace Book_Store.Models
         [ForeignKey("BookType")]
         public int TypeId { get; set; }
         public Type BookType { get; set; } = new Type();
+
+        public List<OrderItem> Items { get; set; } = new List<OrderItem>();
 
     }
 }

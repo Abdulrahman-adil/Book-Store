@@ -98,7 +98,7 @@ namespace Book_Store.Migrations
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Isbn = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    PublicationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PublicationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PublisherId = table.Column<int>(type: "int", nullable: false),
                     AuthorId = table.Column<int>(type: "int", nullable: false),
@@ -134,22 +134,20 @@ namespace Book_Store.Migrations
                     OrederId = table.Column<int>(type: "int", nullable: false),
                     BookId = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    OrderId = table.Column<int>(type: "int", nullable: false),
-                    BookItemId = table.Column<int>(type: "int", nullable: false)
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OrderItems", x => new { x.OrederId, x.BookId });
                     table.ForeignKey(
-                        name: "FK_OrderItems_Books_BookItemId",
-                        column: x => x.BookItemId,
+                        name: "FK_OrderItems_Books_BookId",
+                        column: x => x.BookId,
                         principalTable: "Books",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OrderItems_Orders_OrderId",
-                        column: x => x.OrderId,
+                        name: "FK_OrderItems_Orders_OrederId",
+                        column: x => x.OrederId,
                         principalTable: "Orders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -171,14 +169,9 @@ namespace Book_Store.Migrations
                 column: "TypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderItems_BookItemId",
+                name: "IX_OrderItems_BookId",
                 table: "OrderItems",
-                column: "BookItemId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OrderItems_OrderId",
-                table: "OrderItems",
-                column: "OrderId");
+                column: "BookId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_CustomerId",
