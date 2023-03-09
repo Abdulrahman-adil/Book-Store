@@ -19,7 +19,7 @@ The books are divided into many categories based on subject like Software, Datab
 The Administrator will have additional functionalities when compared to the
 common user. He can add, delete and update the book details, book categories,
 member information and also confirm a placed order.
-
 This application is developed using C#, ASP.NET, Web API, Angular. 
 The Master page, data sets, user controls are used to develop the Online Book store. 
+
 ---
